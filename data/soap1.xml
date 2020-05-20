@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.n11.com/ws/schemas">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sch:GetProductByProductIdRequest>
+         <auth>
+             <appKey>erkan</appKey>
+    <appSecret>ercan</appSecret>
+         </auth>
+         <productId>16685311</productId>
+      </sch:GetProductByProductIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
