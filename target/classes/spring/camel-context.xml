@@ -6,13 +6,13 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
   <bean class="com.redworks.integration.examples.MySoapActionProcessor" id="soapActionProcessor" />
-
+ <bean id="deadLetterErrorHandler" class="org.apache.camel.builder.DeadLetterChannelBuilder">
+  <property name="deadLetterUri" value="log:dead"/>
+</bean>
   <camelContext id="camel" 
-    xmlns="http://camel.apache.org/schema/spring">
-
-
+    xmlns="http://camel.apache.org/schema/spring"  errorHandlerRef="deadLetterErrorHandler">
     <route id="camel-http-proxy">
-      <from uri="jetty://http://localhost:{{env:SOAP_PROXY_LISTENING_PORT}}/?matchOnUriPrefix=true"/>
+      <from uri="jetty://http://0.0.0.0:{{env:SOAP_PROXY_LISTENING_PORT}}/?matchOnUriPrefix=true"/>
       <log message="SOAP Proxy Listening Port: {{env:SOAP_PROXY_LISTENING_PORT}}, Target Address: {{env:SOAP_PROXY_TARGET_ADDRESS}}"/>
       <log message="got SOAP request ${body[0]}"/>
       <setHeader headerName="SOAPAction">

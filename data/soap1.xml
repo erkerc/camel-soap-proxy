@@ -4,7 +4,7 @@
       <sch:GetProductByProductIdRequest>
          <auth>
              <appKey>erkan</appKey>
-    <appSecret>ercan</appSecret>
+            <appSecret>ercan</appSecret>
          </auth>
          <productId>16685311</productId>
       </sch:GetProductByProductIdRequest>
