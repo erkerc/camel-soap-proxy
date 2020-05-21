@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: jetty-demo
+  spec:
+    tags:
+    - from:
+        kind: ImageStreamImage
+        name: jetty-demo@sha256:1e07611b3fffb9958d3b797026bc0cf265444bf528811b8faa30591101e0cddf
+        namespace: camel-proxy-demo
+      name: latest

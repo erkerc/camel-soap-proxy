@@ -12,7 +12,8 @@
 
 
     <route id="camel-http-proxy">
-      <from uri="jetty://http://localhost:8090/?matchOnUriPrefix=true"/>
+      <from uri="jetty://http://localhost:{{env:SOAP_PROXY_LISTENING_PORT}}/?matchOnUriPrefix=true"/>
+      <log message="SOAP Proxy Listening Port: {{env:SOAP_PROXY_LISTENING_PORT}}, Target Address: {{env:SOAP_PROXY_TARGET_ADDRESS}}"/>
       <log message="got SOAP request ${body[0]}"/>
       <setHeader headerName="SOAPAction">
         <xpath>//*[local-name()]</xpath>
@@ -23,11 +24,9 @@
       <setHeader headerName="appSecret">
         <xpath>//auth/appSecret/text()</xpath>
       </setHeader>
-
       <to uri="bean:soapActionProcessor"/>
-      <to uri="http4://localhost:9001/product?bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
+      <to uri="http4://{{env:SOAP_PROXY_TARGET_ADDRESS}}?bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
       <to uri="log:MyLogger?level=INFO&amp;showAll=true" />
     </route>
   </camelContext>
-
 </beans>

@@ -1,0 +1,13 @@
+spec:
+  template:
+    spec:
+      containers:
+        - 
+          resources: {}
+          env:
+          - name: SPRING_APPLICATION_JSON
+            value: '{"server":{"undertow":{"io-threads":1, "worker-threads":2 }}}'
+          - name: SOAP_PROXY_LISTENING_PORT
+            value: '9090'
+          - name: SOAP_PROXY_TARGET_ADDRESS
+            value: 'apicast-staging.api-manager.svc.cluster.local:8080'

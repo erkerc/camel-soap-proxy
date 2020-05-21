@@ -3,13 +3,11 @@ spec:
     spec:
       containers:
         - 
-          resources:
-            requests:
-              cpu: "0.2"
-              memory: 256Mi
-            limits:
-              cpu: "1.0"
-              memory: 256Mi
+          resources: {}
           env:
           - name: SPRING_APPLICATION_JSON
             value: '{"server":{"undertow":{"io-threads":1, "worker-threads":2 }}}'
+          - name: SOAP_PROXY_LISTENING_PORT
+            value: '9090'
+          - name: SOAP_PROXY_TARGET_ADDRESS
+            value: 'apicast-staging.api-manager.svc.cluster.local:8080'
